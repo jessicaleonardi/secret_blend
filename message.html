@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Message hack</title>
+	<script src="p5.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <script src="ml5.min.js"></script>
+	<style type="text/css">
+	/*@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');*/
+
+		@font-face {
+  		font-family: LEDCalculator;
+  		src: url(LEDCalculator.ttf);
+  		}
+
+		body{
+			margin: 1em 5em 1em 5em;
+			padding:0;
+			background-color: rgb(0, 0, 0);
+			overflow-y: hidden;
+		}
+
+		.p5Canvas {
+		opacity: 0;
+		}
+
+		p {
+			color: rgb(0,255,0);
+			margin-top: 0; 
+			margin-bottom: 0;
+			line-height: 1;
+			font-size: 20px;
+		}
+
+		h1 {
+			color: rgb(0,255,0);
+			margin-top: 0; 
+			margin-bottom: 0;
+			line-height: 1;
+			font-size: 75px;
+		}
+
+		#video {
+			width: 240px;
+			height: 180px;
+		}
+
+		.freccia {
+			position: relative;
+		}
+
+		.freccia span {
+			position: absolute;
+    		bottom: 0;
+    		right: 0;
+		}
+
+		.quadro {
+      	height: 246px;
+      	width: 250px;
+		}
+
+		/*
+		#cerchio {
+		height: 230px;
+      	width: 230px;
+     	border-radius: 115px;
+     	border: 3px solid;
+     	border-color: rgb(0, 255, 0);
+     	z-index:10;
+		}
+		*/
+
+		.griglia {
+			max-width: 100vw;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			grid-column-gap: 0em;
+			grid-gap: 0px;
+			column-gap: 1em;
+			grid-row-gap: 0em;
+			margin-bottom: 3em;
+		}
+
+		.griglia2 {
+			max-width: 100vw;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-column-gap: 0em;
+			grid-gap: 0px;
+			column-gap: 0em;
+			grid-row-gap: 0em;
+			margin-bottom: 1em;
+		}
+
+		div {
+			margin: 0px;
+		}
+
+		.cella {
+			/*background-color: lightblue;*/
+			/*outline: 1px red solid;*/
+			font-family: LEDCalculator;
+			color: white;
+			margin: 0px;
+			padding: 0px;
+			border: 0px solid red;
+		}
+
+		.cellaverde {
+			/*background-color: lightblue;*/
+			/*outline: 1px red solid;*/
+			font-family: LEDCalculator;
+			color: white;
+			margin: 0px;
+			padding: 0px;
+			border: 3px solid;
+			border-color: rgb(0, 255, 0);
+		}
+
+		.doppia {
+			 grid-column: span 2;
+		}
+		.tripla {
+			 grid-column: span 3;
+		}
+		.quadrupla {
+			 grid-column: span 4;
+		}
+
+		.quintupla {
+			 grid-column: span 5;
+		}
+
+		.sestupla {
+			grid-column: span 6;
+			
+		}
+
+		.settupla {
+			grid-column: span 7;
+			
+		}
+
+		.nonupla {
+			grid-column: span 9;
+		}
+
+		.bottone{
+			margin-top: 20px;
+			width: 75px;
+    		height: 22px;
+   			display: block;
+   			overflow: hidden;
+    		cursor: pointer;
+		
+		}
+
+		.tutta {
+			 grid-column: span 12;
+		}
+
+		.nascosto {
+			display: none;
+		}
+			
+		.comparsa:hover + .nascosto {
+			display: block;
+			color: rgb(255, 255, 255);
+		}
+		
+		button:hover{
+			background-color: rgb(0, 255, 0);
+			color: rgb(0, 0, 0);
+
+		}
+
+		button{
+			color: rgb(0, 255, 0);
+			font-family: LEDCalculator;
+			font-size: 40px;
+			background-color: rgb(0, 0, 0);
+			height: 250px;
+      		width: 250px;
+     		border-radius: 125px;
+     		border: 3px solid;
+     		border-color: rgb(0, 255, 0);
+     		z-index:10;
+		}
+
+		textarea{
+			color: white;
+			font-family: LEDCalculator;
+			width: 100%;
+			height: 10em;
+			font-size: 16px;
+			padding: 0;
+			background-color: rgb(0, 0, 0);
+			border: 0.25px solid rgb(255, 255, 255)
+		}
+
+
+		
+
+	</style>
+</head>
+
+<body>
+		<div class="griglia">
+			<div class="cella tripla" style="display: flex; justify-content: space-between;">
+				<h1>message <br> hack </h1>
+			</div>
+			<div class="cella doppia"></div>
+			<div class="cella doppia"></div>
+			<div class="cella doppia"></div>
+			<div class="cella doppia"></div>
+			<div class="cella">
+				<a href="index.html" style="text-decoration: none"><p>secret <br> blend</p></a>
+			</div>
+		</div>
+
+		<div class="griglia">
+			<div class="cella tripla" style="display: flex; justify-content: space-between;">
+				<p> Sei a lezione online in videochiamata dal tuo laptop e arriva un messaggio in codice da un compagno sulla chat condivisa. Cosa vorrà dirti? </p>
+			</div>
+			<div class="cella sestupla" style="border: 3px solid rgb(0,255,0);"><div id="canvas"></div> 
+			</div>
+			<div class="cella tripla">
+				<p onclick="showIndizio()" style="font-size: 4.5em; cursor: pointer;">?</p>
+				<p id="indizio" style="margin:0;float:left; position: relative; bottom: 0;left: 0; top: 350px;"></p>
+			</div>
+		</div>
+
+		
+
+		<div class="griglia">
+			<div class="cella freccia">
+				<a href="camera.html" style="text-decoration: none"><p style="font-size: 4.5em;">←</p></a>
+			</div>
+			<div class="cella freccia">
+				<a href="opacity.html" style="text-decoration: none"><p style="font-size: 4.5em;">→</p></a>
+			</div>
+			<div class="cella">
+			</div>
+			<div class="cella doppia"> 
+				<!--<video id="video" width="640" height="480" autoplay></video>-->
+			</div>
+			<div class="cella quadrupla">
+			</div>
+		</div>		
+
+		<div class="griglia">
+			<div class="cella nonupla" style="display: flex; justify-content: space-between;">
+				<p style="font-size: 0.5em;"> Questo minisito funge da contenitore delle diverse sperimentazioni che ho svolto durante il corso di Creative Coding sull’impiego del machine learning nella creazione di un sistema per cryptare e decryptare dei dati possibilmente sensibili. </p>
+			</div>
+			<div class="cella doppia"></div>
+			<div class="cella">
+				<p style="font-size: 0.5em;"> ©Jessica Leonardi 2021 </p>
+			</div>
+		</div>
+		
+
+				
+
+
+
+	<!--
+		embed dello script: copiate l'ultima versione da qui:
+		https://cdnjs.com/libraries/p5.js
+	-->
+	
+	<!--
+		link al vostro file
+	-->
+	<script src="main.js"></script>
+	<script src="sketch_message.js"></script>
+
+	<script>
+    
+    setTimeout(() => {
+        let canvas = document.querySelector('.p5Canvas');
+        document.querySelector("#canvas").appendChild(canvas);
+        canvas.style.opacity = 1;
+    }, 1000)
+
+    function showIndizio() {
+        document.getElementById("indizio").innerHTML = "Conservi sempre ciò che ti ha regalato il tuo compagno. Corri a recuperare qul libro e quel pupazzetto di Flash che tanto vi lega e mostrali assieme! La soluzione è presto rivelata.";
+      }
+
+    </script>
+
+
+</body>
+</html>

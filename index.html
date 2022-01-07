@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Secret blend</title>
+	<style type="text/css">
+	/*@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');*/
+
+		@font-face {
+  		font-family: LEDCalculator;
+  		src: url(LEDCalculator.ttf);
+  		}
+
+		body{
+			margin: 1em 5em 1em 5em;
+			padding:0;
+			background-color: rgb(0, 0, 0);
+			overflow-y: hidden;
+		}
+
+		p {
+			color: rgb(0,255,0);
+			margin-top: 0; 
+			margin-bottom: 0;
+			line-height: 1;
+			font-size: 20px;
+		}
+
+		a {
+			color: rgb(0, 255, 0);
+			text-decoration: none;
+		}
+
+		a:hover{
+			color: rgb(0, 0, 0);
+			cursor: default;
+		}
+
+		h1 {
+			color: rgb(0,255,0);
+			margin-top: 0; 
+			margin-bottom: 0;
+			line-height: 1;
+			font-size: 75px;
+		}
+
+		.quadro {
+      	height: 248px;
+      	width: 250px;
+		}
+
+		/*
+		#cerchio {
+		height: 230px;
+      	width: 230px;
+     	border-radius: 115px;
+     	border: 3px solid;
+     	border-color: rgb(0, 255, 0);
+     	z-index:10;
+		}
+		*/
+
+		.griglia {
+			max-width: 100vw;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			grid-column-gap: 0em;
+			grid-gap: 0px;
+			column-gap: 1em;
+			grid-row-gap: 0em;
+			margin-bottom: 2em;
+		}
+
+		.griglia2 {
+			max-width: 100vw;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-column-gap: 0em;
+			grid-gap: 0px;
+			column-gap: 0em;
+			grid-row-gap: 0em;
+			margin-bottom: 1em;
+		}
+
+		div {
+			margin: 0px;
+		}
+
+		.cella {
+			/*background-color: lightblue;*/
+			/*outline: 1px red solid;*/
+			font-family: LEDCalculator, monospace;
+			color: white;
+			margin: 0px;
+			padding: 0px;
+			border: 0px solid red;
+		}
+
+		.cellaverde {
+			/*background-color: lightblue;*/
+			/*outline: 1px red solid;*/
+			font-family: LEDCalculator;
+			color: white;
+			margin: 0px;
+			padding: 0px;
+			border: 3px solid;
+			border-color: rgb(0, 255, 0);
+		}
+
+		.doppia {
+			 grid-column: span 2;
+		}
+		.tripla {
+			 grid-column: span 3;
+		}
+		.quadrupla {
+			 grid-column: span 4;
+		}
+
+		.quintupla {
+			 grid-column: span 5;
+		}
+
+		.settupla {
+			grid-column: span 7;
+			
+		}
+
+		.nonupla {
+			grid-column: span 9;
+		}
+
+		.bottone{
+			margin-top: 20px;
+			width: 75px;
+    		height: 22px;
+   			display: block;
+   			overflow: hidden;
+    		cursor: pointer;
+		
+		}
+
+		.tutta {
+			 grid-column: span 12;
+		}
+
+		.nascosto {
+			display: none;
+		}
+			
+		.comparsa:hover + .nascosto {
+			display: block;
+			color: rgb(255, 255, 255);
+		}
+		
+		button:hover{
+			background-color: rgb(0, 255, 0);
+			color: rgb(0, 0, 0);
+			cursor: pointer;
+
+		}
+
+		button{
+			color: rgb(0, 255, 0);
+			font-family: LEDCalculator;
+			font-size: 40px;
+			background-color: rgb(0, 0, 0);
+			height: 253px;
+      		width: 253px;
+     		border-radius: 125px;
+     		border: 3px solid;
+     		border-color: rgb(0, 255, 0);
+     		z-index:10;
+		}
+
+		textarea{
+			color: white;
+			font-family: LEDCalculator;
+			width: 100%;
+			height: 10em;
+			font-size: 16px;
+			padding: 0;
+			background-color: rgb(0, 0, 0);
+			border: 0.25px solid rgb(255, 255, 255)
+		}
+
+
+		
+
+	</style>
+</head>
+
+<body>
+		<div class="griglia">
+			<div class="cella tripla" style="display: flex; justify-content: space-between;">
+				<h1>secret <br> blend </h1>
+			</div>
+			<div class="cella doppia"></div>
+			<div class="cella doppia"></div>
+			<div class="cella doppia"></div>
+			<div class="cella doppia"></div>
+			<div class="cella">
+				<a href="index.html" style="text-decoration: none"><p>secret <br> blend</p></a>
+			</div>
+		</div>
+
+		<div class="griglia">
+			<div class="cella tripla" style="display: flex; justify-content: space-between;">
+				<p> È possibile creare un sistema di password o una serie di combinazioni per cryptare e decryptare dei dati attraverso gli strumenti di machine learning ml5js e Teachable Machine? <br>
+				Ecco quattro diverse esplorazioni. </p>
+			</div>
+			<div class="cella doppia"> 
+				<div class="griglia2">
+					<div class="cellaverde doppia quadro"></div>
+					<div class="cellaverde doppia quadro"></div>
+					<div class="cellaverde doppia quadro"></div>
+					<a href="door.html"><button>random <br> hack →</button></a>
+				</div>
+			</div>
+			<div class="cella doppia"> 
+				<div class="griglia2">
+					<div class="cellaverde doppia quadro"></div>
+						<a href="camera.html"><button type="button">camera <br> hack →</button></a>
+					<div class="cellaverde doppia quadro"></div>
+					<div class="cellaverde doppia quadro"></div>
+						<a href="door.html"><button type="button">door <br> hack →</button></a>
+				</div>
+			</div>
+			<div class="cella doppia"> 
+				<div class="griglia2">
+					<div class="cellaverde doppia quadro"></div>
+					<div class="cellaverde doppia quadro"></div>
+						<a href="message.html"><button type="button">message <br> hack →</button></a>
+					<div class="cellaverde doppia quadro"></div>
+						<a href="opacity.html"><button type="button">opacity <br> hack →</button></a>
+				</div>
+			</div>
+			<div class="cella doppia"> </div>
+			<div class="cella"> </div>
+		</div>
+
+		<div class="griglia">
+			<div class="cella nonupla" style="display: flex; justify-content: space-between;">
+				<p style="font-size: 0.5em;"> Questo minisito funge da contenitore delle diverse sperimentazioni che ho svolto durante il corso di Creative Coding sull’impiego del machine learning nella creazione di un sistema per cryptare e decryptare dei dati possibilmente sensibili. </p>
+			</div>
+			<div class="cella doppia"></div>
+			<div class="cella">
+				<p style="font-size: 0.5em;"> ©Jessica Leonardi 2021 </p>
+			</div>
+		</div>
+		
+
+
+
+
+	<!--
+		embed dello script: copiate l'ultima versione da qui:
+		https://cdnjs.com/libraries/p5.js
+	-->
+	
+	<!--
+		link al vostro file
+	-->
+	<script src="main.js"></script>
+	<script src="sketch.js"></script>
+
+
+</body>
+</html>
