@@ -16,7 +16,7 @@ function setup() {
   });
 
   video.hide();
-  img = loadImage('ruanda.jpeg');
+  img = loadImage('/assets/img/ruanda.jpeg');
   image(img, 0, 0, 745, 560);
 }
 
@@ -25,10 +25,8 @@ function modelReady() {
 }
 
 function draw() {
-  //background(bg);
   image(img, 0, 0, 745, 560);
   drawKeypoints();
-  
 }
 
 function drawKeypoints() {
@@ -41,14 +39,11 @@ function drawKeypoints() {
     for (let j = 0; j < keypoints.length; j += 1) {
       const [x, y] = keypoints[j];
 
-      //fill(0, 0, 0);
       noStroke();
-      //ellipse(x, y, 2, 2);
       noFill();
       textSize(5);
       text(j, x, y);
     }
-    //stroke("rgb(0,255,0)");
     line(
       keypoints[13][0],
       keypoints[13][1],
@@ -62,24 +57,20 @@ function drawKeypoints() {
       keypoints[14][1]
     );
 
-    if (distance > 30 && distance < 40) {
-      fill('rgba(100%,100%,100%,0.3)')
-      rect(0, 0, 745, 560);
-    }
-    
-     if (distance > 20 && distance < 30) {
-      fill('rgba(100%,100%,100%,0.5)')
-      rect(0, 0, 745, 560);
-    }
-    
-    if (distance > 10 && distance < 20) {
-      fill('rgba(100%,100%,100%,0.7)')
-      rect(0, 0, 745, 560);
-    }
-    
-    if (distance > 0 && distance < 10) {
-      fill('rgba(100%,100%,100%,0.9)')
-      rect(0, 0, 745, 560);
+    if (distance > 0) {
+      if (distance < 10) {
+        fill('rgba(100%,100%,100%,0.9)')
+        rect(0, 0, 745, 560);
+      } else if (distance > 10 /* NOTE: may be removed */ && distance < 20) {
+        fill('rgba(100%,100%,100%,0.7)')
+        rect(0, 0, 745, 560);
+      } else if (distance > 20 /* NOTE: may be removed */ && distance < 30) {
+        fill('rgba(100%,100%,100%,0.5)')
+        rect(0, 0, 745, 560);
+      } else if (distance > 30 /* NOTE: may be removed */ && distance < 40) {
+        fill('rgba(100%,100%,100%,0.3)')
+        rect(0, 0, 745, 560);
+      }
     }
   }
 }
