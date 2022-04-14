@@ -1,12 +1,13 @@
 let classifier;
-let imageModelURL = "https://teachablemachine.withgoogle.com/models/y4EIxN7pB/";
+let imageModelURL = "https://teachablemachine.withgoogle.com/models/y4EIxN7pB/model.json";
 let video;
 let flippedVideo;
 let label = "";
 
-function preload() {
-  classifier = ml5.imageClassifier(imageModelURL + "model.json");
+const LOCKED_LABELS = [1,2,3,4,5,6,6].map(i => `locked${i}`);
 
+function preload() {
+  classifier = ml5.imageClassifier(imageModelURL);
 }
 
 function setup() {
@@ -18,7 +19,6 @@ function setup() {
 
   flippedVideo = ml5.flipImage(video);
   classifyVideo();
-  
 }
 
 function draw() {
@@ -30,43 +30,8 @@ function draw() {
   fill(255);
   textSize(16);
   textAlign(CENTER);
-  
-  if(label == "locked1") {
-    fill(0)
-    rect(0,0, width, height);
-    fill(0,255,0)
-    text("in attesa", width / 2, height/2);
-  }
-  
-  if(label == "locked2") {
-    fill(0)
-    rect(0,0, width, height);
-    fill(0,255,0)
-    text("in attesa", width / 2, height/2);
-  }
-  
-  if(label == "locked3") {
-    fill(0)
-    rect(0,0, width, height);
-    fill(0,255,0)
-    text("in attesa", width / 2, height/2);
-  }
-  
-  if(label == "locked4") {
-    fill(0)
-    rect(0,0, width, height);
-    fill(0,255,0)
-    text("in attesa", width / 2, height/2);
-  }
-  
-  if(label == "locked5") {
-    fill(0)
-    rect(0,0, width, height);
-    fill(0,255,0)
-    text("in attesa", width / 2, height/2);
-  }
-  
-  if(label == "locked6") {
+
+  if (LOCKED_LABELS.includes(label)) {
     fill(0)
     rect(0,0, width, height);
     fill(0,255,0)
@@ -93,5 +58,3 @@ function gotResult(error, results) {
   // Classifiy again!
   classifyVideo();
 }
-
-

@@ -1,5 +1,5 @@
 let classifier;
-let imageModelURL = "https://teachablemachine.withgoogle.com/models/-K9vddBJh/";
+let imageModelURL = "https://teachablemachine.withgoogle.com/models/-K9vddBJh/model.json";
 let video;
 let flippedVideo;
 let label = "";
@@ -7,8 +7,7 @@ let speech;
 let output = "no text";
 
 function preload() {
-  classifier = ml5.imageClassifier(imageModelURL + "model.json");
-
+  classifier = ml5.imageClassifier(imageModelURL);
 }
 
 function setup() {
@@ -48,36 +47,21 @@ function draw() {
   fill(255);
   textSize(30);
   textAlign(CENTER);
-  
-  if(label == "divisa") {
-    fill('rgba(0%,255%,0%,0.5)')
-    rect(0, 0, 745, 560);
-    fill(0)
-    text("Porta sbloccata, accesso consentito", width / 2, height/2);
+
+  switch (label) {
+    case "divisa":
+      fill('rgba(0%,255%,0%,0.5)');
+      rect(0, 0, 745, 560);
+      fill(0);
+      text("Porta sbloccata, accesso consentito", width / 2, height/2);
+      break;
+    default: /* borghese | borghese2 */
+      fill('rgba(0%,0%,0%,0.5)')
+      rect(0, 0, 745, 560);
+      fill(0,255,0)
+      text("Tentativo fallito", width / 2, height/2);
+      break;
   }
-  
-  if(label == "borghese") {
-    fill('rgba(0%,0%,0%,0.5)')
-    rect(0, 0, 745, 560);
-    fill(0,255,0)
-    text("Tentativo fallito", width / 2, height/2);
-  }
-  
-  if(label == "borghese2") {
-    fill('rgba(0%,0%,0%,0.5)')
-    rect(0, 0, 745, 560);
-    fill(0,255,0)
-    text("Tentativo fallito", width / 2, height/2);
-  }
-  
-  /*
-  if (output.indexOf("Jessica Leonardi") != -1) {
-    fill(0,255,0)
-    rect(0, 0, 745, 560);
-    fill(0)
-    text("Porta sbloccata, accesso consentito", width / 2, height/2);
-  }
-  */
 }
 
 // Get a prediction for the current video frame
@@ -99,5 +83,3 @@ function gotResult(error, results) {
   // Classifiy again!
   classifyVideo();
 }
-
-
